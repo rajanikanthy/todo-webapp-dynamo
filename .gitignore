@@ -1,0 +1,4 @@
+.idea/
+*.pyc
+todo_webapp.egg-info/
+venv/

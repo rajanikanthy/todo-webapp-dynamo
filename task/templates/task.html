@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if editmode %}
+        <form action="{{url_for('edit_task', id=id)}}" method="post">
+    {% else %}
+        <form action="{{url_for('add_tasks')}}" method="post">
+    {% endif %}
+        <div class="row">
+            <div class="six columns">
+                <label for="title">Title</label>
+                {% if editmode %}
+                    <input class="u-full-width" type="text" id="title" name="title" value="{{task['title']}}">
+                {% else %}
+                    <input class="u-full-width" type="text" id="title" name="title">
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="description">Description</label>
+                {% if editmode %}
+                    <textarea class="u-full-width" placeholder="Grocery shopping...." id="description"
+                              name="description" value="{{task['description']}}">{{task['description']}}</textarea>
+                    <label class="example-send-yourself-copy">
+                            <input type="checkbox" id="done" name="done">
+                            <span class="label-body">Mark as complete</span>
+                    </label>
+                {% else %}
+                    <textarea class="u-full-width" placeholder="Grocery shopping...." id="description"
+                              name="description"></textarea>
+                {% endif %}
+            </div>
+        </div>
+
+        <input class="button-primary" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

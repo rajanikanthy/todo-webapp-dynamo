@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="one-half column">
+        <h4>Tasks Application</h4>
+        <p>
+            This Application helps in managing tasks and setting priorities.
+            Also, new features are added for reminders etc.,
+        </p>
+    </div>
+    <div class="one-half column">
+        <form method="post" action="{{url_for('login')}}">
+            <div class="row">
+                <div class="u-full-width">
+                    <label for="username">UserName</label>
+                    <input class="u-full-width" type="text" id="username" name="username">
+                </div>
+                <div class="u-full-width">
+                    <label for="password">Password</label>
+                    <input class="u-full-width" type="password" id="password" name="password">
+                </div>
+            </div>
+            <input class="button-primary" type="submit" value="Login">
+            <a class="button button-primary" href="{{url_for('register')}}">Register</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

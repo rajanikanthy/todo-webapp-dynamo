@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <a class="button button-primary" href="{{url_for('add_tasks')}}">Add Task</a>
+        <a class="button button-primary" href="{{url_for('logout')}}">Logout</a>
+        <p>Logged in as {{ session.username }}</p>
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created Date (UTC)</th>
+                <th>Modified Date (UTC)</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task["title"] }}</td>
+                <td>{{ task["description"] }}</td>
+                <td>{{ task["created_date"] }}</td>
+                <td>{{ task["modified_date"]}}</td>
+                {% if task["done"] %}
+                <td>
+                    <i class="fas fa-check-circle"></i>
+                </td>
+                {% else %}
+                <td>
+                    <i class="fas fa-times-circle"></i>
+                </td>
+                {% endif %}
+                <td>
+                    <a href="{{url_for('edit_task', id=task['id'])}}"><i class="fas fa-edit"></i></a>
+                    <a href="{{url_for('delete_task', id=task['id'])}}"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="one-half column">
+        <form method="post" action="{{url_for('register')}}">
+            <div class="row">
+                <div class="u-full-width">
+                    <label for="username">UserName</label>
+                    <input class="u-full-width" type="text" id="username" name="username">
+                </div>
+                <div class="u-full-width">
+                    <label for="password">Password</label>
+                    <input class="u-full-width" type="password" id="password" name="password">
+                </div>
+                <div class="u-full-width">
+                    <label for="email_addr">Your email</label>
+                    <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="email_addr"
+                           name="email_addr">
+                </div>
+            </div>
+            <input class="button-primary" type="submit" value="Register">
+        </form>
+    </div>
+</div>
+{% endblock %}

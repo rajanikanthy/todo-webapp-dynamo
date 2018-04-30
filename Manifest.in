@@ -1,0 +1,3 @@
+graft task/templates
+graft task/static
+include task/schema.sql
