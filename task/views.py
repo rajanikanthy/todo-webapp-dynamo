@@ -21,10 +21,11 @@ app.config.update(dict(
 ))
 
 region = os.getenv("AWS_REGION", "us-west-1")
-dynamodb_endpoint = os.getenv("DYNAMO_DB_URL", "http://localhost:8000")
-
-dynamodb = boto3.resource('dynamodb', region_name=region, endpoint_url=dynamodb_endpoint)
-
+if os.getenv('DYNAMO_DB_URL') is None:
+    dynamodb = boto3.resource('dynamodb', region_name=region)
+else:
+    dynamodb_endpoint = os.getenv("DYNAMO_DB_URL", "http://localhost:8000")
+    dynamodb = boto3.resource('dynamodb', region_name=region, endpoint_url=dynamodb_endpoint)
 
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
